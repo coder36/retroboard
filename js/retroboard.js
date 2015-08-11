@@ -20,6 +20,12 @@ export default class Retroboard extends React.Component {
     }
 
     render() {
+        return (
+            <h1>Hello world</h1>
+        )
+    }
+
+    render() {
         var stickies = this.props.stickies.map((sticky)=> {
             return (
                 <Sticky data={sticky}></Sticky>
@@ -28,9 +34,8 @@ export default class Retroboard extends React.Component {
 
         return (
             <div className="retroboard">
-                <video width="100%" height="100%" controls loop autoplay muted>
-                    <source src="//static.video.sky.com/skyatlantic/2015/06/131841/131841-576p_2000K_H264.mp4" type="video/mp4"/>
-                </video>
+                <div className="retro_ba"></div>
+                <img width="100%" height="100%" src="img/got_1920x810.jpg"></img>
                 <ControlPanel peerjs={this.props.peerjs}/>
                 {stickies}
             </div>

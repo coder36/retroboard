@@ -1,6 +1,14 @@
 # Retroboard
 
-A WebRtc enabled retroboard.
+A WebRtc enabled retroboard.  Developed with:    
+
+* [ES6 / ES2015 / Babel](https://babeljs.io/docs/learn-es2015) - The latest javascript language additions 
+* [React](http://facebook.github.io/react) - A view framework which is very different to anything before it
+* [Alt (Flux)](https://github.com/goatslacker/alt) - A flux data store for react
+* [RXJS](https://github.com/Reactive-Extensions/RxJS) - Event driven functional programming
+* [PeerJS](http://peerjs.com) - Webrtc peer to peer made nice
+* [jspm](http://jspm.io) - ES6 package manager
+
 
 ####[Demo](http://coder36.github.io/retroboard/build)
 
@@ -11,14 +19,17 @@ A WebRtc enabled retroboard.
 ## Building
 
         npm install
-        npm start
+        jspm install
+        serve
         
-        Goto http://localhost:9292
+        Goto http://localhost:3000
         
-## TODO
+## Building for production
+         
+         rake prod
+        
+## Todo
 
-* Make sticky id's unique between peers - sha1 ?
-* Disable connection input field once connection established
-* Ability to delete stickies
 * Select sticky colour
+* Add Touch Screen support 
 * Mobile enabled screen for creating stickies
