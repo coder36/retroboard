@@ -19,7 +19,7 @@
 .sticky {
     position: fixed;
     display: inline-block;
-    background: transparent url("/img/sticky.png") no-repeat 0 center;
+    background: transparent url("../img/sticky.png") no-repeat 0 center;
     background-size: 100%;
     height: 200px;
     width: 200px;
