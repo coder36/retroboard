@@ -1,39 +1,38 @@
 {
-  "name": "retroboard",
+  "name": "kanban_app_2",
   "version": "1.0.0",
-  "description": "",
+  "description": "A WebRtc enabled retroboard.",
   "main": "index.js",
   "scripts": {
-    "publish": "TARGET=prod webpack --config webpack.config.js  --progress --profile --colors",
-    "start": "TARGET=dev webpack-dev-server --devtool eval-source-map --progress --colors --hot --inline --history-api-fallback"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "babel-core": "^5.8.3",
-    "babel-loader": "^5.3.2",
-    "css-loader": "^0.15.5",
-    "flowcheck": "^0.2.7",
-    "flowcheck-loader": "^1.0.0",
-    "html-webpack-plugin": "^1.6.0",
-    "node-libs-browser": "^0.5.2",
-    "react-hot-loader": "^1.2.8",
-    "style-loader": "^0.12.3",
-    "webpack": "^1.10.1",
-    "webpack-dev-server": "^1.10.1",
-    "webpack-merge": "^0.1.2"
+  "jspm": {
+    "directories": {},
+    "dependencies": {
+      "adapterjs": "npm:adapterjs@^0.11.1",
+      "alt": "npm:alt@^0.17.1",
+      "blueimp-md5": "npm:blueimp-md5@^1.1.1",
+      "css": "npm:jspm-loader-css@^0.1.6",
+      "js-binarypack": "npm:js-binarypack@^0.0.9",
+      "md5": "npm:md5@^2.0.0",
+      "node-sass": "npm:node-sass@^3.2.0",
+      "peerjs": "npm:peerjs@^0.3.14",
+      "react": "npm:react@^0.14.0-beta3",
+      "rx": "npm:rx@^3.0.0",
+      "whatwg-fetch": "npm:whatwg-fetch@^0.9.0"
+    },
+    "devDependencies": {
+      "babel": "npm:babel-core@^5.1.13",
+      "babel-runtime": "npm:babel-runtime@^5.1.13",
+      "core-js": "npm:core-js@^0.9.4"
+    }
   },
-  "dependencies": {
-    "adapterjs": "^0.11.1",
-    "alt": "^0.17.1",
-    "bootstrap-webpack": "0.0.3",
-    "file-loader": "^0.8.4",
-    "imports-loader": "^0.6.4",
-    "jquery": "^2.1.4",
-    "peerjs": "^0.3.14",
-    "react": "^0.13.3",
-    "rx": "^2.5.3",
-    "url-loader": "^0.5.6",
-    "whatwg-fetch": "^0.9.0"
+  "devDependencies": {
+    "html-dist": "^0.1.0",
+    "serve": "^1.4.0",
+    "uglify": "^0.1.5",
+    "uglifyjs": "^2.4.10"
   }
 }

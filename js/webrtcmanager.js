@@ -2,6 +2,7 @@ import Peer from 'peerjs'
 import React from 'react'
 import StickyStore from './stickystore'
 import StickyActions from './stickyactions'
+import 'adapterjs'
 
 
 export default class WebRtcManager {
@@ -49,7 +50,13 @@ export default class WebRtcManager {
     receive(data) {
         console.log(data);
         if( data.seen_by_peers.indexOf(this.peer_id ) == -1 ) {
-            StickyActions.update(data);
+
+            if ( data.action == "delete" ) {
+                StickyActions.delete(data);
+            }
+            else {
+                StickyActions.update(data);
+            }
         }
     }
 

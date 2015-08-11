@@ -17,11 +17,15 @@ export default class RemoteWebRtc extends React.Component {
     }
 
     render()  {
+
+        let status = this.props.status;
+        let connected = status == "connected";
+
         return (
             <div>
                 <div className="row">
                     <label for="remote_id">Remote Id:</label>
-                    <input type="text" className="" id="remote_id" valueLink={this.linkState('remote_id')}></input>
+                    <input type="text" className="" id="remote_id" valueLink={this.linkState('remote_id')} disabled={connected}></input>
                     <button className="btn" onClick={() => this.connect()}>Connect</button>
                     <span>{this.props.status}</span>
                 </div>

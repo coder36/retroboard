@@ -28,13 +28,26 @@ export default class Sticky extends React.Component {
     };
 
     mousedown(event) {
+        StickyActions.stickyToTop(this.props.data);
         this.dragSticky({x: event.clientX, y: event.clientY});
     };
+
+    onTouchStart(event) {
+        alert("here");
+        StickyActions.stickyToTop(this.props.data);
+        this.dragSticky({x: event.clientX, y: event.clientY});
+    }
+
+    onDelete() {
+        StickyActions.delete(this.props.data);
+    }
+
 
     render() {
         var data = this.props.data;
         return (
             <div onMouseDown={(e) => this.mousedown(e)} className="sticky" style={{zIndex: data.z, left: data.x, top: data.y}}>
+                <div className="close_icon" onClick={()=>this.onDelete()}></div>
                 <div className="note noselect">
                     <div className="note noselect">
                         {data.text}

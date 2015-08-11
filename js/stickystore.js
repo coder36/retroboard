@@ -1,17 +1,16 @@
 import alt from './alt';
 import StickyActions from './stickyactions';
 import WebRtcManager from './webrtcmanager';
+import md5 from 'md5';
 
-var id=1;
+var zindex = 1;
 
 class StickyStore {
 
     constructor() {
         this.bindActions(StickyActions);
-        var data = { stickies: [], peerjs:{ id: "", status:""}};
-        data.stickies.push( {id: id, x: 0, y: 300, z: 0, text: "Retroboard"} );
-        id++;
-        this.state = data;
+        this.state = { stickies: [], peerjs:{ id: "", status:""}};
+        this.state.stickies.push( StickyStore.createStickyData("Retroboard"));
         this.webRtcManager = new WebRtcManager();
     }
 
@@ -25,6 +24,9 @@ class StickyStore {
         s.x = sticky.x;
         s.y = sticky.y;
         s.z = sticky.z;
+        if ( sticky.z > zindex ) {
+            zindex = sticky.z;
+        }
         s.text = sticky.text;
         this.setState({stickies});
         this.webRtcManager.broadcast(sticky);
@@ -33,16 +35,38 @@ class StickyStore {
 
     create(sticky) {
         const stickies = this.state.stickies;
-        let s = {};
-        s.text = sticky.text;
-        id++;
-        s.id = id;
-        s.x = 23;
-        s.y = 23;
-        s.z = 1;
+        let s = StickyStore.createStickyData( sticky.text );
+        console.log(s.id);
         stickies.push(s);
         this.setState({stickies});
         this.webRtcManager.broadcast(s);
+    }
+
+    delete(sticky) {
+        const stickies = this.state.stickies;
+        let index = stickies.map( s => s.id ).indexOf(sticky.id);
+        stickies.splice(index, 1 );
+        this.setState({stickies});
+        sticky.action = "delete";
+        this.webRtcManager.broadcast(sticky);
+    }
+
+    stickyToTop(sticky) {
+        const stickies = this.state.stickies
+        var s = this.getSticky(sticky.id);
+        s.z = zindex++;
+        this.setState({stickies});
+        this.webRtcManager.broadcast(s);
+    }
+
+    static createStickyData(text) {
+        let s = {};
+        s.text = text;
+        s.id = md5(text);
+        s.x = 23;
+        s.y = 23;
+        s.z = zindex++;
+        return s;
     }
 
     getSticky(id) {
