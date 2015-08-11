@@ -10,7 +10,7 @@ A WebRtc enabled retroboard.  Developed with:
 * [jspm](http://jspm.io) - ES6 package manager
 
 
-####[Demo](http://coder36.github.io/retroboard/build)
+####[Demo](http://coder36.github.io/retroboard/dist)
 
 
 <a href="http://coder36.github.io/retroboard/build"><img src="https://raw.githubusercontent.com/coder36/retroboard/master/screenshot.png"/></a>
