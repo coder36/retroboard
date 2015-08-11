@@ -3,7 +3,7 @@
 A WebRtc enabled retroboard.  Developed with:    
 
 * [ES6 / ES2015 / Babel](https://babeljs.io/docs/learn-es2015) - The latest javascript language additions 
-* [React](http://facebook.github.io/react) - A view framework which is very different to anything before it
+* [React](http://facebook.github.io/react) - An amazing view framework, developed by Facebook
 * [Alt (Flux)](https://github.com/goatslacker/alt) - A flux data store for react
 * [RXJS](https://github.com/Reactive-Extensions/RxJS) - Event driven functional programming
 * [PeerJS](http://peerjs.com) - Webrtc peer to peer made nice
