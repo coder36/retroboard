@@ -10,43 +10,60 @@ export default class Sticky extends React.Component {
     }
 
     dragSticky(mousePosition) {
+        StickyActions.stickyToTop(this.props.data);
+
         var startX = this.props.data.x;
         var startY = this.props.data.y;
-        Rx.Observable.fromEvent(document, 'mousemove').map((moveEvent) => {
-            moveEvent.preventDefault();
+
+        var mouseMove = Rx.Observable.merge(
+            Rx.Observable.fromEvent(document, 'mousemove'),
+            Rx.Observable.fromEvent(document, 'touchmove').map((event) => {
+                event.preventDefault();
+                let touch = event.touches[0];
+                return ({
+                    clientX: touch.clientX,
+                    clientY: touch.clientY
+                });
+            }));
+
+        var mouseUp = Rx.Observable.merge(
+            Rx.Observable.fromEvent(document, 'mouseup'),
+            Rx.Observable.fromEvent(document, 'touchend'));
+
+
+        mouseMove.map((moveEvent) => {
+            //moveEvent.preventDefault();
             return {
                 x: moveEvent.clientX - (mousePosition.x - startX),
                 y: moveEvent.clientY - (mousePosition.y - startY)
             }
-        }).takeUntil(Rx.Observable.fromEvent(document, 'mouseup'))
+        }).takeUntil(mouseUp)
             .forEach((newPos) => {
+                //console.log(newPos)
                 var data = this.props.data;
                 data.x = newPos.x;
                 data.y = newPos.y;
                 StickyActions.update(data);
             });
     };
-
-    mousedown(event) {
-        StickyActions.stickyToTop(this.props.data);
-        this.dragSticky({x: event.clientX, y: event.clientY});
-    };
-
-    onTouchStart(event) {
-        alert("here");
-        StickyActions.stickyToTop(this.props.data);
+    
+    onMouseDown(event) {
         this.dragSticky({x: event.clientX, y: event.clientY});
     }
+
+    onTouchStart(event) {
+        let touch = event.touches[0];
+        this.dragSticky({x: touch.clientX, y: touch.clientY});
+    };
 
     onDelete() {
         StickyActions.delete(this.props.data);
     }
 
-
     render() {
         var data = this.props.data;
         return (
-            <div onMouseDown={(e) => this.mousedown(e)} className="sticky" style={{zIndex: data.z, left: data.x, top: data.y}}>
+            <div onTouchStart={(e) => this.onTouchStart(e)} onMouseDown={(e) => this.onMouseDown(e)} className="sticky" style={{zIndex: data.z, left: data.x, top: data.y}}>
                 <div className="close_icon" onClick={()=>this.onDelete()}></div>
                 <div className="note noselect">
                     <div className="note noselect">

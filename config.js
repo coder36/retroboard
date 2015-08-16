@@ -17,6 +17,7 @@ System.config({
 
 System.config({
   "map": {
+    "URIjs": "npm:URIjs@1.16.0",
     "adapterjs": "npm:adapterjs@0.11.1",
     "alt": "npm:alt@0.17.1",
     "babel": "npm:babel-core@5.8.21",
@@ -112,6 +113,9 @@ System.config({
     },
     "github:jspm/nodelibs-zlib@0.1.0": {
       "browserify-zlib": "npm:browserify-zlib@0.1.4"
+    },
+    "npm:URIjs@1.16.0": {
+      "process": "github:jspm/nodelibs-process@0.1.1"
     },
     "npm:abbrev@1.0.7": {
       "assert": "github:jspm/nodelibs-assert@0.1.0",

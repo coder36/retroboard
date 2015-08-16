@@ -3,13 +3,21 @@ import StickyActions from './stickyactions'
 import 'adapterjs'
 import connectToStores from 'alt/utils/connectToStores'
 import linkState from './linkstate'
+import URI from 'URIjs'
 
 @linkState
 export default class RemoteWebRtc extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state= {remote_id: ""}
+        this.state = {remote_id: ""};
+        let uri = new URI(window.location.href).query(true);
+
+        if( uri.remote ) {
+            this.state = {remote_id: uri.remote};
+            StickyActions.createRemoteConnection( uri.remote );
+        }
+
     }
 
     connect() {
@@ -20,7 +28,7 @@ export default class RemoteWebRtc extends React.Component {
 
         let status = this.props.status;
         let connected = status == "connected";
-
+        let uri = new URI(window.location.href);
         return (
             <div>
                 <div className="row">
@@ -30,7 +38,7 @@ export default class RemoteWebRtc extends React.Component {
                     <span>{this.props.status}</span>
                 </div>
                 <div className="peer_id">
-                    <span>{this.props.peer_id}</span>
+                    <span>{uri.search("") + "?remote=" + this.props.peer_id}</span>
                 </div>
                 <div>
 
